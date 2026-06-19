@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Codex 使用全流程手册 | Tyouyu</title>
+    <meta name="description" content="Codex 在国内网络环境下的安装、账号、安全验证与使用流程实测记录。" />
+    <style>
+:root { color-scheme: dark; --bg: #081019; --line: rgba(206, 229, 255, 0.16); --text: #eef7ff; --muted: #9fb1c5; --soft: #d9e9f6; --cyan: #23d3ee; --green: #61e6a8; --shadow: 0 24px 80px rgba(0, 0, 0, 0.32); }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; min-height: 100vh; font-family: "Segoe UI", "Microsoft YaHei", Arial, sans-serif; color: var(--text); background: radial-gradient(circle at 18% 10%, rgba(35, 211, 238, 0.18), transparent 28%), radial-gradient(circle at 88% 22%, rgba(97, 230, 168, 0.11), transparent 24%), linear-gradient(145deg, var(--bg), #0d1721 48%, #0a1119); line-height: 1.85; }
+body::before { content: ""; position: fixed; inset: 0; pointer-events: none; background-image: linear-gradient(rgba(206, 229, 255, 0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(206, 229, 255, 0.055) 1px, transparent 1px); background-size: 48px 48px; mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.88), transparent 86%); }
+a { color: inherit; text-decoration: none; }
+a:hover { color: var(--cyan); }
+.topbar { position: sticky; top: 0; z-index: 20; border-bottom: 1px solid var(--line); background: rgba(8, 16, 25, 0.76); backdrop-filter: blur(18px); }
+.shell { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+.nav { height: 70px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.brand { display: inline-flex; align-items: center; gap: 12px; font-weight: 800; }
+.brand-mark { width: 38px; height: 38px; border: 1px solid rgba(35, 211, 238, 0.5); border-radius: 8px; display: grid; place-items: center; color: var(--cyan); background: linear-gradient(135deg, rgba(35, 211, 238, 0.18), rgba(97, 230, 168, 0.08)), rgba(255, 255, 255, 0.04); box-shadow: 0 0 32px rgba(35, 211, 238, 0.18); }
+.nav-links { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 14px; }
+.nav-links a { padding: 10px 12px; border-radius: 8px; }
+.nav-links a:hover { color: var(--text); background: rgba(255, 255, 255, 0.08); }
+.hero { position: relative; padding: 84px 0 58px; border-bottom: 1px solid var(--line); }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 42px; align-items: stretch; }
+.kicker { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 22px; color: var(--green); font-size: 14px; font-weight: 800; }
+.pulse { width: 9px; height: 9px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 8px rgba(97, 230, 168, 0.12); }
+h1 { max-width: 840px; margin: 0 0 24px; font-size: clamp(38px, 6vw, 68px); line-height: 1.08; letter-spacing: 0; }
+.lead { max-width: 780px; margin: 0; color: var(--soft); font-size: 18px; }
+.summary-card, .toc, .article-section { border: 1px solid var(--line); border-radius: 8px; background: linear-gradient(180deg, rgba(255, 255, 255, 0.088), rgba(255, 255, 255, 0.042)), rgba(255, 255, 255, 0.04); box-shadow: var(--shadow); }
+.summary-card { padding: 22px; }
+.summary-card strong { display: block; margin-bottom: 12px; color: var(--cyan); font-size: 13px; }
+.summary-card span { display: block; margin-top: 8px; color: var(--muted); line-height: 1.7; }
+.content { padding: 48px 0 82px; }
+.toc { padding: 26px 28px; margin-bottom: 22px; }
+.toc h2 { margin: 0 0 16px; color: var(--green); font-size: 19px; }
+.toc ol { margin: 0; padding-left: 20px; columns: 2; column-gap: 34px; }
+.toc li { break-inside: avoid; margin-bottom: 8px; color: var(--muted); }
+.article-section { padding: 32px 34px; margin-bottom: 22px; }
+.article-section h2 { display: flex; align-items: center; gap: 12px; margin: 0 0 22px; padding-bottom: 16px; border-bottom: 1px solid var(--line); color: var(--text); font-size: clamp(24px, 3vw, 32px); line-height: 1.35; }
+.article-section h2 span { flex: 0 0 auto; width: 36px; height: 36px; border: 1px solid rgba(35, 211, 238, 0.5); border-radius: 8px; display: grid; place-items: center; color: var(--cyan); background: rgba(35, 211, 238, 0.1); font-size: 15px; }
+p { margin: 0 0 14px; color: var(--soft); }
+ol, ul { margin: 0 0 16px; padding-left: 24px; color: var(--soft); }
+li { margin-bottom: 7px; }
+strong { color: var(--text); }
+.article-section a, .lead a { color: var(--cyan); border-bottom: 1px solid rgba(35, 211, 238, 0.32); }
+footer { border-top: 1px solid var(--line); padding: 30px 0; color: var(--muted); font-size: 14px; }
+.footer-row { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+@media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; } .toc ol { columns: 1; } }
+@media (max-width: 680px) { .shell { width: min(100% - 28px, 1120px); } .nav { height: 64px; } .nav-links { display: none; } .hero { padding: 54px 0 38px; } h1 { font-size: 38px; } .article-section, .toc, .summary-card { padding: 22px 18px; } .article-section h2 { align-items: flex-start; font-size: 23px; } .footer-row { align-items: flex-start; flex-direction: column; } }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="shell nav">
+        <a class="brand" href="../index.html" aria-label="Tyouyu 首页">
+          <span class="brand-mark">T</span>
+          <span>Tyouyu</span>
+        </a>
+        <nav class="nav-links" aria-label="文章导航">
+          <a href="../index.html">首页</a>
+          <a href="#toc">目录</a>
+          <a href="#s1">正文</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="shell hero-grid">
+          <div>
+            <div class="kicker"><span class="pulse"></span> Practical Notes</div>
+            <h1>Codex 使用全流程手册</h1>
+            <p class="lead">近期，我对 Codex 在国内网络环境下的使用流程做了一次完整测试。这篇文章记录个人实测过程，供有相关需求的朋友参考。</p>
+          </div>
+          <aside class="summary-card" aria-label="文章信息">
+            <strong>ARTICLE / GUIDE</strong>
+            <span>主题：网络环境、账号开通、Codex 安装、安全验证与经验总结</span>
+            <span>更新：2026-06-19</span>
+          </aside>
+        </div>
+      </section>
+
+      <div class="shell content">
+        <section class="toc" id="toc">
+          <h2>文章目录</h2>
+          <ol>
+            <li><a href="#s1">一、网络环境准备</a></li>
+            <li><a href="#s2">二、注册 ChatGPT 账号并开通 Plus</a></li>
+            <li><a href="#s3">三、下载安装 Codex</a></li>
+            <li><a href="#s4">四、整体流程回顾</a></li>
+            <li><a href="#s5">五、几点经验总结</a></li>
+          </ol>
+        </section>
+
+        <section class="article-section" id="intro">
+          <h2><span>0</span>写在前面</h2>
+          <p>近期，我对 Codex 在国内网络环境下的使用流程做了一次完整测试。整体来看，只要前期网络、账号和安全验证配置得当，Codex 是可以顺利使用的。</p>
+<p>这篇文章主要记录我的个人实测过程，供有相关需求的朋友参考。需要说明的是，本文仅作技术实践分享，不构成任何购买建议。涉及网络服务、第三方充值和账号安全的环节，请大家结合自身情况审慎判断，并遵守相关平台规则和单位信息安全要求。</p>
+        </section>
+
+<section class="article-section" id="s1">
+  <h2><span>1</span>一、网络环境准备</h2>
+  <p>首先需要准备一个稳定的网络环境。我这次使用的是 <a href="https://secure.shadowsocks.au/" target="_blank" rel="noopener">Shadowsocks 服务</a>：</p>
+<p>购买完成后，后台会生成一个包含密钥信息的配置文件 URL，也就是常说的订阅链接。这个链接非常关键，后续需要导入到代理客户端中。</p>
+<p>电脑端我使用的是 Clash Verge，配置步骤如下：</p>
+<ol>
+<li>打开 Clash Verge。</li>
+<li>进入「订阅」页面。</li>
+<li>点击「新建」。</li>
+<li>将 Shadowsocks 后台提供的配置文件 URL 粘贴进去。</li>
+<li>保存后更新订阅。</li>
+<li>选择可用节点并开启连接。</li>
+</ol>
+<p>连接成功后，建议先访问 ChatGPT 官网进行测试。如果 ChatGPT 网页能够正常打开，说明网络环境基本配置完成。</p>
+</section>
+
+<section class="article-section" id="s2">
+  <h2><span>2</span>二、注册 ChatGPT 账号并开通 Plus</h2>
+  <p>网络连接正常后，下一步是注册 ChatGPT 账号。</p>
+<p>注册完成并成功登录后，再进行 ChatGPT Plus 的开通。我这次使用的是以下网站购买 <a href="https://yiaigptbingo.top/" target="_blank" rel="noopener">Plus 充值卡密</a></p>
+<p>具体流程如下：</p>
+<ol>
+<li>在网站购买 ChatGPT Plus 充值卡密。</li>
+<li>根据网站页面提示，填入购买到的充值卡密。</li>
+<li>登录自己的 ChatGPT 账号。</li>
+<li>按照指引获取 ChatGPT 的充值密钥。</li>
+<li>将充值密钥填入充值页面的输入框。</li>
+<li>点击「核对账户」。</li>
+<li>页面会显示对应的 ChatGPT 账户信息。</li>
+<li>确认账户无误后，点击「确认充值」。</li>
+<li>等待充值完成。</li>
+</ol>
+<p>这里需要特别注意：第三方充值存在一定风险，包括账号安全、充值失败、售后不确定等问题。操作前一定要核对账号信息，避免充错账户。</p>
+</section>
+
+<section class="article-section" id="s3">
+  <h2><span>3</span>三、下载安装 Codex</h2>
+  <p>ChatGPT Plus 开通完成后，就可以下载并安装 Codex。</p>
+<p>安装完成后，打开 Codex，使用自己的 ChatGPT 账号登录。实际操作中，部分用户可能会遇到安全验证环节，尤其是电话验证相关问题。</p>
+<p>我这次测试中，比较关键的一步是在 ChatGPT 网页端提前完成安全验证设置。</p>
+<p>具体路径如下：</p>
+<p>ChatGPT 网页端 → 设置 → 安全 → 使用 Microsoft Windows Hello 验证</p>
+<p>在 Windows 系统中，按照提示完成 Windows Hello 验证。完成后关闭 Codex，再重新启动并登录。</p>
+<p>我在完成这一设置后，Codex 就可以正常进入并使用。</p>
+</section>
+
+<section class="article-section" id="s4">
+  <h2><span>4</span>四、整体流程回顾</h2>
+  <p>完整流程可以概括为：</p>
+<ol>
+<li>购买 Shadowsocks 服务。</li>
+<li>获取包含密钥信息的配置文件 URL。</li>
+<li>在 Clash Verge 中通过「订阅 → 新建」导入 URL。</li>
+<li>更新订阅，选择节点并连接。</li>
+<li>测试 ChatGPT 网页是否可以正常访问。</li>
+<li>注册 ChatGPT 账号。</li>
+<li>购买 ChatGPT Plus 充值卡密。</li>
+<li>按照网站指引完成充值。</li>
+<li>下载并安装 Codex。</li>
+<li>在 ChatGPT 网页端完成 Microsoft Windows Hello 安全验证。</li>
+<li>重启 Codex，重新登录后即可使用。</li>
+</ol>
+</section>
+
+<section class="article-section" id="s5">
+  <h2><span>5</span>五、几点经验总结</h2>
+  <p>从这次实测来看，整个流程中有三个关键点：</p>
+<p>第一，网络订阅链接要正确导入 Clash Verge。很多连接失败的问题，往往不是软件本身的问题，而是订阅地址、节点选择或代理模式配置不正确。</p>
+<p>第二，ChatGPT Plus 充值前一定要核对账户。特别是通过第三方渠道充值时，要确认页面显示的账户确实是自己的账号。</p>
+<p>第三，Codex 登录前，建议先在 ChatGPT 网页端完成 Windows Hello 安全验证。这个步骤可以减少后续登录时遇到验证卡住的情况。</p>
+<p>总体而言，Codex 作为 AI 编程辅助工具，对于代码阅读、项目理解、自动修改、调试和文档生成都有较高的实用价值。对于技术人员、产品人员以及需要提升开发效率的团队管理者来说，都值得进行一次实际体验。</p>
+</section>
+      </div>
+    </main>
+
+    <footer>
+      <div class="shell footer-row">
+        <span>© 2026 Tyouyu. Built with GitHub Pages.</span>
+        <span>Articles, notes, reflections.</span>
+      </div>
+    </footer>
+  </body>
+</html>
