@@ -4,17 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Tyouyu | Knowledge Space</title>
-    <meta
-      name="description"
-      content="Tyouyu 的知识空间，发布文章、感悟、学习笔记和长期思考。"
-    />
+    <meta name="description" content="Tyouyu 的知识空间，发布文章、感悟、学习笔记和长期思考。" />
     <style>
       :root {
         color-scheme: dark;
         --bg: #081019;
-        --bg-2: #101a24;
         --panel: rgba(255, 255, 255, 0.072);
-        --panel-strong: rgba(255, 255, 255, 0.11);
         --line: rgba(206, 229, 255, 0.16);
         --text: #eef7ff;
         --muted: #9fb1c5;
@@ -60,6 +55,11 @@
       a {
         color: inherit;
         text-decoration: none;
+      }
+
+      button,
+      input {
+        font: inherit;
       }
 
       .shell {
@@ -125,11 +125,11 @@
 
       .hero {
         min-height: calc(100vh - 70px);
-        padding: 80px 0 60px;
+        padding: 78px 0 56px;
         display: grid;
-        grid-template-columns: minmax(0, 1.04fr) minmax(310px, 0.96fr);
+        grid-template-columns: minmax(0, 0.95fr) minmax(340px, 1.05fr);
         align-items: center;
-        gap: 58px;
+        gap: 54px;
       }
 
       .kicker {
@@ -139,7 +139,7 @@
         margin-bottom: 22px;
         color: var(--green);
         font-size: 14px;
-        font-weight: 700;
+        font-weight: 800;
       }
 
       .pulse {
@@ -158,10 +158,10 @@
       }
 
       h1 {
-        max-width: 720px;
+        max-width: 760px;
         margin-bottom: 24px;
-        font-size: clamp(44px, 7vw, 82px);
-        line-height: 0.98;
+        font-size: clamp(44px, 7vw, 78px);
+        line-height: 1;
         letter-spacing: 0;
       }
 
@@ -184,10 +184,9 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        gap: 9px;
         padding: 0 18px;
-        border-radius: 8px;
         border: 1px solid transparent;
+        border-radius: 8px;
         font-weight: 750;
         transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
       }
@@ -208,19 +207,25 @@
         background: rgba(255, 255, 255, 0.06);
       }
 
-      .featured-list {
-        position: relative;
-        min-height: 520px;
+      .feature-panel,
+      .topic-card,
+      .post-card,
+      .library,
+      .about-panel,
+      .principles {
         border: 1px solid var(--line);
         border-radius: 8px;
-        overflow: hidden;
         background:
-          linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.045)),
-          rgba(5, 10, 16, 0.86);
+          linear-gradient(180deg, rgba(255, 255, 255, 0.088), rgba(255, 255, 255, 0.042)),
+          rgba(255, 255, 255, 0.04);
         box-shadow: var(--shadow);
       }
 
-      .featured-head {
+      .feature-panel {
+        overflow: hidden;
+      }
+
+      .panel-head {
         height: 46px;
         padding: 0 16px;
         display: flex;
@@ -231,61 +236,36 @@
         font-size: 13px;
       }
 
-      .featured-body {
-        position: relative;
+      .feature-body {
         padding: 22px;
       }
 
-      .hero-post {
+      .featured-main {
         display: block;
-        border: 1px solid rgba(35, 211, 238, 0.26);
+        padding: 22px;
+        border: 1px solid rgba(35, 211, 238, 0.28);
         border-radius: 8px;
-        padding: 20px;
         background:
-          linear-gradient(135deg, rgba(35, 211, 238, 0.13), rgba(97, 230, 168, 0.055)),
+          linear-gradient(135deg, rgba(35, 211, 238, 0.14), rgba(97, 230, 168, 0.055)),
           rgba(255, 255, 255, 0.055);
         transition: transform 0.18s ease, border-color 0.18s ease;
       }
 
-      .hero-post:hover,
-      .mini-post:hover {
+      .featured-main:hover,
+      .featured-mini:hover,
+      .post-card:hover,
+      .archive-row:hover {
         transform: translateY(-3px);
         border-color: rgba(35, 211, 238, 0.58);
       }
 
-      .label {
-        display: inline-flex;
-        align-items: center;
-        margin-bottom: 14px;
-        color: var(--green);
-        font-size: 12px;
-        font-weight: 800;
-      }
-
-      .hero-post h3,
-      .mini-post h3 {
-        margin-bottom: 10px;
-        line-height: 1.35;
-      }
-
-      .hero-post h3 {
-        font-size: 25px;
-      }
-
-      .hero-post p,
-      .mini-post p {
-        margin-bottom: 0;
-        color: var(--muted);
-        line-height: 1.65;
-      }
-
-      .mini-posts {
+      .featured-mini-list {
         margin-top: 14px;
         display: grid;
         gap: 14px;
       }
 
-      .mini-post {
+      .featured-mini {
         display: block;
         padding: 18px;
         border: 1px solid var(--line);
@@ -294,9 +274,54 @@
         transition: transform 0.18s ease, border-color 0.18s ease;
       }
 
+      .label,
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .label {
+        margin-bottom: 14px;
+        color: var(--green);
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .tag {
+        width: fit-content;
+        color: #061017;
+        padding: 4px 8px;
+        border-radius: 6px;
+        background: var(--green);
+        font-weight: 800;
+      }
+
+      .featured-main h3,
+      .featured-mini h3,
+      .post-card h3 {
+        margin-bottom: 10px;
+        line-height: 1.35;
+      }
+
+      .featured-main h3 {
+        font-size: 26px;
+      }
+
+      .featured-main p,
+      .featured-mini p,
+      .post-card p {
+        margin-bottom: 0;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
       section {
         position: relative;
-        padding: 74px 0;
+        padding: 72px 0;
         border-top: 1px solid var(--line);
       }
 
@@ -315,72 +340,34 @@
       }
 
       .section-title p {
-        max-width: 420px;
+        max-width: 460px;
         margin-bottom: 0;
         color: var(--muted);
         line-height: 1.7;
       }
 
-      .article-grid {
+      .post-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 18px;
       }
 
-      .article-card {
-        min-height: 262px;
+      .post-card {
+        min-height: 248px;
         padding: 24px;
-        border: 1px solid var(--line);
-        border-radius: 8px;
         display: flex;
         flex-direction: column;
-        background:
-          linear-gradient(180deg, rgba(255, 255, 255, 0.088), rgba(255, 255, 255, 0.042)),
-          rgba(255, 255, 255, 0.04);
         transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
       }
 
-      .article-card:hover {
-        transform: translateY(-4px);
-        border-color: rgba(35, 211, 238, 0.52);
-        background:
-          linear-gradient(180deg, rgba(35, 211, 238, 0.12), rgba(255, 255, 255, 0.045)),
-          rgba(255, 255, 255, 0.04);
-      }
-
-      .meta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
+      .post-card .meta {
         margin-bottom: 18px;
-        color: var(--muted);
-        font-size: 13px;
-      }
-
-      .tag {
-        color: #061017;
-        padding: 4px 8px;
-        border-radius: 6px;
-        background: var(--green);
-        font-weight: 800;
-      }
-
-      .article-card h3 {
-        margin-bottom: 12px;
-        font-size: 22px;
-        line-height: 1.35;
-      }
-
-      .article-card p {
-        color: var(--muted);
-        line-height: 1.7;
       }
 
       .read-more {
         margin-top: auto;
         display: inline-flex;
         align-items: center;
-        gap: 8px;
         color: var(--cyan);
         font-weight: 750;
       }
@@ -391,54 +378,173 @@
         gap: 14px;
       }
 
-      .topic {
-        min-height: 150px;
+      .topic-card {
+        min-height: 152px;
         padding: 22px;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        background: rgba(255, 255, 255, 0.052);
+        box-shadow: none;
       }
 
-      .topic strong {
+      .topic-card strong {
         display: block;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
         font-size: 18px;
       }
 
-      .topic span {
+      .topic-card span {
         color: var(--muted);
         line-height: 1.65;
       }
 
-      .note {
+      .topic-count {
+        display: inline-flex;
+        margin-top: 18px;
+        color: var(--cyan);
+        font-weight: 800;
+      }
+
+      .library {
+        overflow: hidden;
+      }
+
+      .library-tools {
+        padding: 18px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 12px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .search {
+        min-height: 48px;
+        width: 100%;
+        padding: 0 16px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.055);
+        outline: none;
+      }
+
+      .search:focus {
+        border-color: rgba(35, 211, 238, 0.58);
+      }
+
+      .filter-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .filter {
+        min-height: 42px;
+        padding: 0 12px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        color: var(--muted);
+        background: rgba(255, 255, 255, 0.045);
+        cursor: pointer;
+      }
+
+      .filter.active {
+        color: #061017;
+        border-color: transparent;
+        background: linear-gradient(135deg, var(--cyan), var(--green));
+        font-weight: 800;
+      }
+
+      .archive-list {
+        padding: 10px 18px 18px;
+        display: grid;
+        gap: 10px;
+      }
+
+      .archive-row {
+        padding: 16px 18px;
+        border: 1px solid transparent;
+        border-radius: 8px;
+        display: grid;
+        grid-template-columns: 110px minmax(0, 1fr) auto;
+        gap: 16px;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.04);
+        transition: transform 0.18s ease, border-color 0.18s ease;
+      }
+
+      .archive-date {
+        color: var(--green);
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      .archive-title {
+        min-width: 0;
+      }
+
+      .archive-title strong {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .archive-title span {
+        display: block;
+        margin-top: 4px;
+        color: var(--muted);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 14px;
+      }
+
+      .archive-category {
+        color: #061017;
+        padding: 4px 8px;
+        border-radius: 6px;
+        background: var(--green);
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .library-footer {
+        padding: 0 18px 20px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .empty {
+        padding: 28px 18px;
+        color: var(--muted);
+        text-align: center;
+      }
+
+      .about-grid {
         display: grid;
         grid-template-columns: 0.9fr 1.1fr;
         gap: 22px;
-        align-items: stretch;
       }
 
-      .note-panel {
+      .about-panel,
+      .principles {
         padding: 28px;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        background: rgba(255, 255, 255, 0.065);
+        box-shadow: none;
       }
 
-      .note-panel p {
+      .about-panel p {
         margin-bottom: 0;
         color: var(--muted);
         line-height: 1.8;
       }
 
-      .steps {
+      .principles {
         margin: 0;
-        padding: 0;
         list-style: none;
         display: grid;
         gap: 12px;
       }
 
-      .steps li {
+      .principles li {
         padding: 16px 18px;
         border: 1px solid var(--line);
         border-radius: 8px;
@@ -462,17 +568,17 @@
 
       @media (max-width: 960px) {
         .hero,
-        .note {
+        .about-grid {
           grid-template-columns: 1fr;
         }
 
-        .featured-list {
-          min-height: auto;
-        }
-
-        .article-grid,
+        .post-grid,
         .topic-grid {
           grid-template-columns: repeat(2, 1fr);
+        }
+
+        .library-tools {
+          grid-template-columns: 1fr;
         }
       }
 
@@ -496,18 +602,22 @@
         }
 
         h1 {
-          font-size: 44px;
+          font-size: 42px;
         }
 
         .lead {
           font-size: 17px;
         }
 
-        .featured-body {
+        .feature-body,
+        .post-card,
+        .topic-card,
+        .about-panel,
+        .principles {
           padding: 18px;
         }
 
-        .article-grid,
+        .post-grid,
         .topic-grid {
           grid-template-columns: 1fr;
         }
@@ -519,6 +629,20 @@
 
         section {
           padding: 54px 0;
+        }
+
+        .archive-row {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        .archive-title strong,
+        .archive-title span {
+          white-space: normal;
+        }
+
+        .archive-category {
+          width: fit-content;
         }
 
         .footer-row {
@@ -536,8 +660,9 @@
           <span>Tyouyu</span>
         </a>
         <nav class="nav-links" aria-label="页面导航">
-          <a href="#articles">最新文章</a>
+          <a href="#latest">最新</a>
           <a href="#topics">主题</a>
+          <a href="#library">文章库</a>
           <a href="#about">关于</a>
         </nav>
       </div>
@@ -546,124 +671,77 @@
     <main id="top">
       <div class="shell hero">
         <div>
-          <div class="kicker"><span class="pulse"></span> Weekly Notes Online</div>
-          <h1>记录文章、感悟与持续进化的认知系统。</h1>
+          <div class="kicker"><span class="pulse"></span> Knowledge Space Online</div>
+          <h1>把文章、感悟和长期思考，整理成可检索的知识空间。</h1>
           <p class="lead">
-            这里是我的个人知识空间。每周更新两到三篇文章，记录技术学习、思考片段、生活感悟和那些值得反复回看的问题。
+            这里收纳技术笔记、阅读体会、生活观察和阶段性复盘。首页只展示重点内容，完整文章会进入下方文章库，方便长期积累和查找。
           </p>
           <div class="actions">
-            <a class="button primary" href="#articles">阅读最新文章</a>
-            <a class="button ghost" href="#topics">浏览主题分类</a>
+            <a class="button primary" href="#library">进入文章库</a>
+            <a class="button ghost" href="#latest">查看最新文章</a>
           </div>
         </div>
 
-        <aside class="featured-list" aria-label="精选文章">
-          <div class="featured-head">
+        <aside class="feature-panel" aria-label="精选文章">
+          <div class="panel-head">
             <span>精选文章</span>
-            <span>Latest</span>
+            <span>Featured</span>
           </div>
-          <div class="featured-body">
-            <a class="hero-post" href="posts/first-post.html">
-              <span class="label">FEATURED / 2026-06-19</span>
-              <h3>国资企业Token出海的战略分析</h3>
-              <p>人工智能的浪潮下，国资企业如何利用Token经济拓展海外市场？</p>
-            </a>
-
-            <div class="mini-posts">
-              <a class="mini-post" href="posts/second-post.html">
-                <span class="label">TECH / 2026-06-19</span>
-                <h3>Codex使用全流程手册</h3>
-                <p>国内使用Codex，从购买vpn到充值GPTplus,到绕过Codex电话验证。</p>
-              </a>
-              <a class="mini-post" href="posts/third-post.html">
-                <span class="label">NOTE / 2026-06-19</span>
-                <h3>最近的一点感悟</h3>
-                <p>把生活里的观察、变化和问题写成更清晰的文字。</p>
-              </a>
-            </div>
-          </div>
+          <div class="feature-body" id="featuredPosts"></div>
         </aside>
       </div>
 
-      <section id="articles">
+      <section id="latest">
         <div class="shell">
           <div class="section-title">
-            <h2>最新文章</h2>
-            <p>一些近期写下的文章与片段，关于技术、学习、生活观察，以及那些还在持续变清楚的问题。</p>
+            <h2>最新更新</h2>
+            <p>首页只保留最近几篇，避免文章越来越多以后变成很长的列表。完整内容请进入文章库搜索。</p>
           </div>
-
-          <div class="article-grid">
-            <a class="article-card" href="posts/first-post.html">
-              <div class="meta">
-                <span class="tag">思考</span>
-                <span>2026-06-19</span>
-              </div>
-              <h3>第一篇文章标题</h3>
-              <p>这里写一两句话摘要，说明这篇文章讨论的问题、灵感来源或你希望读者带走的观点。</p>
-              <span class="read-more">阅读全文 →</span>
-            </a>
-
-            <a class="article-card" href="posts/second-post.html">
-              <div class="meta">
-                <span class="tag">技术</span>
-                <span>2026-06-19</span>
-              </div>
-              <h3>一次技术学习记录</h3>
-              <p>可以记录工具、代码、系统设计、AI 实践或任何你正在拆解的技术问题。</p>
-              <span class="read-more">阅读全文 →</span>
-            </a>
-
-            <a class="article-card" href="posts/third-post.html">
-              <div class="meta">
-                <span class="tag">感悟</span>
-                <span>2026-06-19</span>
-              </div>
-              <h3>最近的一点感悟</h3>
-              <p>把生活里的观察、情绪和变化写下来，给未来的自己留一个清晰的坐标。</p>
-              <span class="read-more">阅读全文 →</span>
-            </a>
-          </div>
+          <div class="post-grid" id="latestPosts"></div>
         </div>
       </section>
 
       <section id="topics">
         <div class="shell">
           <div class="section-title">
-            <h2>主题分类</h2>
-            <p>文章多起来之后，可以按主题维护入口，让读者更容易找到同一条思考线索。</p>
+            <h2>主题入口</h2>
+            <p>按主题浏览文章，适合在几百篇内容里重新找到同一条思考线索。</p>
+          </div>
+          <div class="topic-grid" id="topicGrid"></div>
+        </div>
+      </section>
+
+      <section id="library">
+        <div class="shell">
+          <div class="section-title">
+            <h2>文章库</h2>
+            <p>支持标题、摘要和主题搜索。后续文章增加到几百篇时，主要在这里查找。</p>
           </div>
 
-          <div class="topic-grid">
-            <div class="topic">
-              <strong>技术笔记</strong>
-              <span>编程、AI、工具链、系统设计和实践复盘。</span>
+          <div class="library">
+            <div class="library-tools">
+              <input class="search" id="searchInput" type="search" placeholder="搜索文章标题、摘要或主题..." aria-label="搜索文章" />
+              <div class="filter-row" id="filterRow"></div>
             </div>
-            <div class="topic">
-              <strong>长期思考</strong>
-              <span>关于学习、工作、表达和决策的持续观察。</span>
-            </div>
-            <div class="topic">
-              <strong>生活感悟</strong>
-              <span>日常里的细节、变化、情绪和微小但重要的发现。</span>
-            </div>
-            <div class="topic">
-              <strong>阅读摘录</strong>
-              <span>书、文章、论文和播客里的启发与延伸。</span>
+            <div class="archive-list" id="archiveList"></div>
+            <div class="empty" id="emptyState" hidden>没有找到匹配的文章。</div>
+            <div class="library-footer">
+              <button class="button ghost" id="loadMore" type="button">显示更多</button>
             </div>
           </div>
         </div>
       </section>
 
       <section id="about">
-        <div class="shell note">
-          <div class="note-panel">
+        <div class="shell about-grid">
+          <div class="about-panel">
             <h2>关于这个空间</h2>
             <p>
-              这里不是一个追热点的地方，而是一个慢慢积累的知识空间。技术笔记、阅读体会、生活感悟和阶段性复盘都会被放在这里，
+              这里不是一个追热点的地方，而是一个慢慢积累的知识空间。文章会按主题、时间和问题线索沉淀下来，
               让零散经验逐渐形成更清晰的个人知识地图。
             </p>
           </div>
-          <ul class="steps">
+          <ul class="principles">
             <li>保持真实：记录当下真正关心的问题，而不是制造看起来完整的答案。</li>
             <li>保持清晰：每篇文章尽量只解决一个核心问题，留下可复用的思考路径。</li>
             <li>保持连续：每周更新几篇短文，让表达成为长期系统的一部分。</li>
@@ -679,5 +757,188 @@
         <span>Articles, notes, reflections.</span>
       </div>
     </footer>
+
+    <script>
+      const articles = [
+        {
+          title: "Codex 使用全流程手册",
+          date: "2026-06-19",
+          category: "技术",
+          summary: "Codex 在国内网络环境下的安装、账号、安全验证与使用流程实测记录。",
+          url: "posts/codex-guide.html",
+          featured: true
+        },
+        {
+          title: "深圳国企算力出海战略研究报告",
+          date: "2026-06-19",
+          category: "研究",
+          summary: "围绕 Token 出海、算力资源、目标市场和落地路径展开的战略研究报告。",
+          url: "posts/first-post.html",
+          featured: true
+        }
+      ];
+
+      const state = {
+        category: "全部",
+        query: "",
+        visibleCount: 12
+      };
+
+      const sortedArticles = [...articles].sort((a, b) => b.date.localeCompare(a.date));
+      const categories = ["全部", ...Array.from(new Set(sortedArticles.map((article) => article.category)))];
+
+      const formatDate = (value) => value.replaceAll("-", ".");
+      const escapeHtml = (value) =>
+        String(value).replace(/[&<>"']/g, (char) => ({
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#039;"
+        })[char]);
+
+      function articleMatches(article) {
+        const query = state.query.trim().toLowerCase();
+        const categoryOk = state.category === "全部" || article.category === state.category;
+        if (!query) return categoryOk;
+        const haystack = `${article.title} ${article.summary} ${article.category}`.toLowerCase();
+        return categoryOk && haystack.includes(query);
+      }
+
+      function renderFeatured() {
+        const featured = sortedArticles.filter((article) => article.featured).slice(0, 3);
+        const fallback = featured.length ? featured : sortedArticles.slice(0, 3);
+        const [main, ...rest] = fallback;
+        const target = document.getElementById("featuredPosts");
+
+        if (!main) {
+          target.innerHTML = '<div class="empty">暂无精选文章。</div>';
+          return;
+        }
+
+        target.innerHTML = `
+          <a class="featured-main" href="${escapeHtml(main.url)}">
+            <span class="label">FEATURED / ${formatDate(main.date)}</span>
+            <h3>${escapeHtml(main.title)}</h3>
+            <p>${escapeHtml(main.summary)}</p>
+          </a>
+          <div class="featured-mini-list">
+            ${rest.map((article) => `
+              <a class="featured-mini" href="${escapeHtml(article.url)}">
+                <span class="label">${escapeHtml(article.category).toUpperCase()} / ${formatDate(article.date)}</span>
+                <h3>${escapeHtml(article.title)}</h3>
+                <p>${escapeHtml(article.summary)}</p>
+              </a>
+            `).join("")}
+          </div>
+        `;
+      }
+
+      function renderLatest() {
+        const latest = sortedArticles.slice(0, 6);
+        document.getElementById("latestPosts").innerHTML = latest.map((article) => `
+          <a class="post-card" href="${escapeHtml(article.url)}">
+            <div class="meta">
+              <span class="tag">${escapeHtml(article.category)}</span>
+              <span>${formatDate(article.date)}</span>
+            </div>
+            <h3>${escapeHtml(article.title)}</h3>
+            <p>${escapeHtml(article.summary)}</p>
+            <span class="read-more">阅读全文 →</span>
+          </a>
+        `).join("");
+      }
+
+      function renderTopics() {
+        const counts = sortedArticles.reduce((map, article) => {
+          map.set(article.category, (map.get(article.category) || 0) + 1);
+          return map;
+        }, new Map());
+
+        const descriptions = {
+          技术: "工具、代码、AI 实践、系统设计和问题复盘。",
+          研究: "行业、商业、策略和结构化分析。",
+          感悟: "生活观察、阶段复盘和个人体验。",
+          阅读: "书、文章、论文和播客带来的启发。"
+        };
+
+        document.getElementById("topicGrid").innerHTML = Array.from(counts.entries()).map(([category, count]) => `
+          <a class="topic-card" href="#library" data-topic="${escapeHtml(category)}">
+            <strong>${escapeHtml(category)}</strong>
+            <span>${escapeHtml(descriptions[category] || "围绕这一主题沉淀的文章与笔记。")}</span>
+            <span class="topic-count">${count} 篇</span>
+          </a>
+        `).join("");
+      }
+
+      function renderFilters() {
+        document.getElementById("filterRow").innerHTML = categories.map((category) => `
+          <button class="filter ${category === state.category ? "active" : ""}" type="button" data-category="${escapeHtml(category)}">
+            ${escapeHtml(category)}
+          </button>
+        `).join("");
+      }
+
+      function renderArchive() {
+        const filtered = sortedArticles.filter(articleMatches);
+        const visible = filtered.slice(0, state.visibleCount);
+        const archiveList = document.getElementById("archiveList");
+        const emptyState = document.getElementById("emptyState");
+        const loadMore = document.getElementById("loadMore");
+
+        archiveList.innerHTML = visible.map((article) => `
+          <a class="archive-row" href="${escapeHtml(article.url)}">
+            <span class="archive-date">${formatDate(article.date)}</span>
+            <span class="archive-title">
+              <strong>${escapeHtml(article.title)}</strong>
+              <span>${escapeHtml(article.summary)}</span>
+            </span>
+            <span class="archive-category">${escapeHtml(article.category)}</span>
+          </a>
+        `).join("");
+
+        emptyState.hidden = filtered.length !== 0;
+        loadMore.hidden = visible.length >= filtered.length;
+      }
+
+      function renderAll() {
+        renderFeatured();
+        renderLatest();
+        renderTopics();
+        renderFilters();
+        renderArchive();
+      }
+
+      document.getElementById("searchInput").addEventListener("input", (event) => {
+        state.query = event.target.value;
+        state.visibleCount = 12;
+        renderArchive();
+      });
+
+      document.getElementById("filterRow").addEventListener("click", (event) => {
+        const button = event.target.closest("[data-category]");
+        if (!button) return;
+        state.category = button.dataset.category;
+        state.visibleCount = 12;
+        renderFilters();
+        renderArchive();
+      });
+
+      document.getElementById("topicGrid").addEventListener("click", (event) => {
+        const topic = event.target.closest("[data-topic]");
+        if (!topic) return;
+        state.category = topic.dataset.topic;
+        state.visibleCount = 12;
+        renderFilters();
+        renderArchive();
+      });
+
+      document.getElementById("loadMore").addEventListener("click", () => {
+        state.visibleCount += 12;
+        renderArchive();
+      });
+
+      renderAll();
+    </script>
   </body>
 </html>
