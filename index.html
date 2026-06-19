@@ -125,11 +125,11 @@
 
       .hero {
         min-height: calc(100vh - 70px);
-        padding: 78px 0 56px;
+        padding: 34px 0 42px;
         display: grid;
-        grid-template-columns: minmax(0, 0.95fr) minmax(340px, 1.05fr);
+        grid-template-columns: minmax(380px, 1.04fr) minmax(0, 0.96fr);
         align-items: center;
-        gap: 54px;
+        gap: 48px;
       }
 
       .kicker {
@@ -160,17 +160,9 @@
       h1 {
         max-width: 760px;
         margin-bottom: 24px;
-        font-size: clamp(44px, 7vw, 78px);
-        line-height: 1;
+        font-size: clamp(40px, 5.2vw, 60px);
+        line-height: 1.04;
         letter-spacing: 0;
-      }
-
-      .lead {
-        max-width: 650px;
-        margin-bottom: 34px;
-        color: var(--soft);
-        font-size: 19px;
-        line-height: 1.75;
       }
 
       .actions {
@@ -180,7 +172,7 @@
       }
 
       .button {
-        min-height: 48px;
+        min-height: 44px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -207,7 +199,7 @@
         background: rgba(255, 255, 255, 0.06);
       }
 
-      .feature-panel,
+      .hero-visual,
       .topic-card,
       .post-card,
       .library,
@@ -221,12 +213,51 @@
         box-shadow: var(--shadow);
       }
 
+      .hero-visual {
+        position: relative;
+        overflow: hidden;
+        min-height: 600px;
+        padding: 0;
+      }
+
+      .hero-visual::before {
+        content: "";
+        position: absolute;
+        inset: 18px;
+        border: 1px solid rgba(206, 229, 255, 0.18);
+        border-radius: 8px;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .hero-image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 42%;
+        filter: saturate(0.96) contrast(1.05);
+      }
+
+      .hero-copy-panel {
+        display: grid;
+        gap: 18px;
+      }
+
       .feature-panel {
         overflow: hidden;
+        border: 1px solid rgba(206, 229, 255, 0.2);
+        border-radius: 8px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.038)),
+          rgba(255, 255, 255, 0.06);
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.34);
+        backdrop-filter: blur(14px);
       }
 
       .panel-head {
-        height: 46px;
+        height: 34px;
         padding: 0 16px;
         display: flex;
         align-items: center;
@@ -237,41 +268,30 @@
       }
 
       .feature-body {
-        padding: 22px;
+        padding: 10px;
       }
 
-      .featured-main {
+      .featured-list {
+        display: grid;
+        gap: 6px;
+      }
+
+      .featured-post {
         display: block;
-        padding: 22px;
-        border: 1px solid rgba(35, 211, 238, 0.28);
+        padding: 7px 10px 8px;
+        border: 1px solid var(--line);
         border-radius: 8px;
         background:
-          linear-gradient(135deg, rgba(35, 211, 238, 0.14), rgba(97, 230, 168, 0.055)),
-          rgba(255, 255, 255, 0.055);
+          linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.035)),
+          rgba(255, 255, 255, 0.045);
         transition: transform 0.18s ease, border-color 0.18s ease;
       }
 
-      .featured-main:hover,
-      .featured-mini:hover,
+      .featured-post:hover,
       .post-card:hover,
       .archive-row:hover {
         transform: translateY(-3px);
         border-color: rgba(35, 211, 238, 0.58);
-      }
-
-      .featured-mini-list {
-        margin-top: 14px;
-        display: grid;
-        gap: 14px;
-      }
-
-      .featured-mini {
-        display: block;
-        padding: 18px;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        background: rgba(255, 255, 255, 0.045);
-        transition: transform 0.18s ease, border-color 0.18s ease;
       }
 
       .label,
@@ -285,9 +305,9 @@
       }
 
       .label {
-        margin-bottom: 14px;
+        margin-bottom: 3px;
         color: var(--green);
-        font-size: 12px;
+        font-size: 10px;
         font-weight: 800;
       }
 
@@ -300,23 +320,22 @@
         font-weight: 800;
       }
 
-      .featured-main h3,
-      .featured-mini h3,
+      .featured-post h3,
       .post-card h3 {
-        margin-bottom: 10px;
+        margin-bottom: 0;
+        font-size: 18px;
         line-height: 1.35;
       }
 
-      .featured-main h3 {
-        font-size: 26px;
-      }
-
-      .featured-main p,
-      .featured-mini p,
+      .featured-post p,
       .post-card p {
         margin-bottom: 0;
         color: var(--muted);
         line-height: 1.65;
+      }
+
+      .featured-post p {
+        display: none;
       }
 
       section {
@@ -572,6 +591,10 @@
           grid-template-columns: 1fr;
         }
 
+        .hero-visual {
+          min-height: 620px;
+        }
+
         .post-grid,
         .topic-grid {
           grid-template-columns: repeat(2, 1fr);
@@ -615,6 +638,10 @@
         .about-panel,
         .principles {
           padding: 18px;
+        }
+
+        .hero-visual {
+          min-height: 460px;
         }
 
         .post-grid,
@@ -670,31 +697,34 @@
 
     <main id="top">
       <div class="shell hero">
-        <div>
-          <div class="kicker"><span class="pulse"></span> Knowledge Space Online</div>
-          <h1>把文章、感悟和长期思考，整理成可检索的知识空间。</h1>
-          <p class="lead">
-            这里收纳技术笔记、阅读体会、生活观察和阶段性复盘。首页只展示重点内容，完整文章会进入下方文章库，方便长期积累和查找。
-          </p>
-          <div class="actions">
-            <a class="button primary" href="#library">进入文章库</a>
-            <a class="button ghost" href="#latest">查看最新文章</a>
+        <aside class="hero-visual" aria-label="Featured">
+          <img class="hero-image" src="assets/midlife-awakening.png" alt="中年人站在山巅远望云海与城市，呈现豁然开朗的意境" />
+        </aside>
+
+        <div class="hero-copy-panel">
+          <div>
+            <div class="kicker"><span class="pulse"></span> Knowledge Space Online</div>
+            <h1>把文章、感悟和长期思考，整理成可检索的知识空间。</h1>
+            <div class="actions">
+              <a class="button primary" href="#library">进入文章库</a>
+              <a class="button ghost" href="#latest">查看最新文章</a>
+            </div>
+          </div>
+          <div class="feature-panel">
+            <div class="panel-head">
+              <span>Featured</span>
+              <span>Featured</span>
+            </div>
+            <div class="feature-body" id="featuredPosts"></div>
           </div>
         </div>
-
-        <aside class="feature-panel" aria-label="精选文章">
-          <div class="panel-head">
-            <span>精选文章</span>
-            <span>Featured</span>
-          </div>
-          <div class="feature-body" id="featuredPosts"></div>
-        </aside>
       </div>
 
       <section id="latest">
         <div class="shell">
           <div class="section-title">
             <h2>最新更新</h2>
+            <p>展示最近 4 篇文章；完整内容进入文章库搜索和筛选。</p>
           </div>
           <div class="post-grid" id="latestPosts"></div>
         </div>
@@ -704,6 +734,7 @@
         <div class="shell">
           <div class="section-title">
             <h2>主题入口</h2>
+            <p>根据文章库中的分类自动统计，文章数量增加后这里会同步扩展。</p>
           </div>
           <div class="topic-grid" id="topicGrid"></div>
         </div>
@@ -713,6 +744,7 @@
         <div class="shell">
           <div class="section-title">
             <h2>文章库</h2>
+            <p>已链接 posts 目录中的文章，支持标题、摘要和主题搜索。</p>
           </div>
 
           <div class="library">
@@ -772,8 +804,19 @@
           summary: "围绕 Token 出海、算力资源、目标市场和落地路径展开的战略研究报告。",
           url: "posts/first-post.html",
           featured: true
+        },
+        {
+          title: "初识佛经，醍醐灌顶",
+          date: "2026-06-19",
+          category: "感悟",
+          summary: "读《心经》《金刚经》《楞严经》之后，对诸法空相、缘起性空与人生系统规则的一次个人思考。",
+          url: "posts/third-post.html",
+          featured: true
         }
       ];
+
+      const FEATURED_LIMIT = 3;
+      const LATEST_LIMIT = 4;
 
       const state = {
         category: "全部",
@@ -803,26 +846,20 @@
       }
 
       function renderFeatured() {
-        const featured = sortedArticles.filter((article) => article.featured).slice(0, 3);
-        const fallback = featured.length ? featured : sortedArticles.slice(0, 3);
-        const [main, ...rest] = fallback;
+        const featured = sortedArticles.filter((article) => article.featured).slice(0, FEATURED_LIMIT);
+        const fallback = featured.length ? featured : sortedArticles.slice(0, FEATURED_LIMIT);
         const target = document.getElementById("featuredPosts");
 
-        if (!main) {
-          target.innerHTML = '<div class="empty">暂无精选文章。</div>';
+        if (!fallback.length) {
+          target.innerHTML = '<div class="empty">No featured articles yet.</div>';
           return;
         }
 
         target.innerHTML = `
-          <a class="featured-main" href="${escapeHtml(main.url)}">
-            <span class="label">FEATURED / ${formatDate(main.date)}</span>
-            <h3>${escapeHtml(main.title)}</h3>
-            <p>${escapeHtml(main.summary)}</p>
-          </a>
-          <div class="featured-mini-list">
-            ${rest.map((article) => `
-              <a class="featured-mini" href="${escapeHtml(article.url)}">
-                <span class="label">${escapeHtml(article.category).toUpperCase()} / ${formatDate(article.date)}</span>
+          <div class="featured-list">
+            ${fallback.map((article) => `
+              <a class="featured-post" href="${escapeHtml(article.url)}">
+                <span class="label">FEATURED / ${formatDate(article.date)}</span>
                 <h3>${escapeHtml(article.title)}</h3>
                 <p>${escapeHtml(article.summary)}</p>
               </a>
@@ -832,7 +869,7 @@
       }
 
       function renderLatest() {
-        const latest = sortedArticles.slice(0, 6);
+        const latest = sortedArticles.slice(0, LATEST_LIMIT);
         document.getElementById("latestPosts").innerHTML = latest.map((article) => `
           <a class="post-card" href="${escapeHtml(article.url)}">
             <div class="meta">
