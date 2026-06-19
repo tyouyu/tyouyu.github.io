@@ -208,7 +208,7 @@
         background: rgba(255, 255, 255, 0.06);
       }
 
-      .console {
+      .featured-list {
         position: relative;
         min-height: 520px;
         border: 1px solid var(--line);
@@ -220,7 +220,7 @@
         box-shadow: var(--shadow);
       }
 
-      .console-head {
+      .featured-head {
         height: 46px;
         padding: 0 16px;
         display: flex;
@@ -231,40 +231,26 @@
         font-size: 13px;
       }
 
-      .dots {
-        display: flex;
-        gap: 7px;
-      }
-
-      .dot {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: var(--red);
-      }
-
-      .dot:nth-child(2) {
-        background: var(--gold);
-      }
-
-      .dot:nth-child(3) {
-        background: var(--green);
-      }
-
-      .console-body {
+      .featured-body {
         position: relative;
-        padding: 28px;
+        padding: 22px;
       }
 
-      .scan-card {
-        border: 1px solid var(--line);
+      .hero-post {
+        display: block;
+        border: 1px solid rgba(35, 211, 238, 0.26);
         border-radius: 8px;
         padding: 20px;
-        background: rgba(255, 255, 255, 0.06);
+        background:
+          linear-gradient(135deg, rgba(35, 211, 238, 0.13), rgba(97, 230, 168, 0.055)),
+          rgba(255, 255, 255, 0.055);
+        transition: transform 0.18s ease, border-color 0.18s ease;
       }
 
-      .scan-card + .scan-card {
-        margin-top: 16px;
+      .hero-post:hover,
+      .mini-post:hover {
+        transform: translateY(-3px);
+        border-color: rgba(35, 211, 238, 0.58);
       }
 
       .label {
@@ -276,46 +262,36 @@
         font-weight: 800;
       }
 
-      .bar {
-        height: 9px;
-        margin-top: 10px;
-        border-radius: 999px;
-        background: rgba(217, 233, 246, 0.13);
-        overflow: hidden;
+      .hero-post h3,
+      .mini-post h3 {
+        margin-bottom: 10px;
+        line-height: 1.35;
       }
 
-      .bar span {
-        display: block;
-        height: 100%;
-        border-radius: inherit;
-        background: linear-gradient(90deg, var(--cyan), var(--green));
+      .hero-post h3 {
+        font-size: 25px;
       }
 
-      .metric-grid {
-        margin-top: 18px;
+      .hero-post p,
+      .mini-post p {
+        margin-bottom: 0;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      .mini-posts {
+        margin-top: 14px;
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 12px;
+        gap: 14px;
       }
 
-      .metric {
-        padding: 16px;
+      .mini-post {
+        display: block;
+        padding: 18px;
         border: 1px solid var(--line);
         border-radius: 8px;
-        background: rgba(255, 255, 255, 0.05);
-      }
-
-      .metric strong {
-        display: block;
-        color: var(--text);
-        font-size: 24px;
-      }
-
-      .metric span {
-        display: block;
-        margin-top: 6px;
-        color: var(--muted);
-        font-size: 13px;
+        background: rgba(255, 255, 255, 0.045);
+        transition: transform 0.18s ease, border-color 0.18s ease;
       }
 
       section {
@@ -490,7 +466,7 @@
           grid-template-columns: 1fr;
         }
 
-        .console {
+        .featured-list {
           min-height: auto;
         }
 
@@ -527,11 +503,10 @@
           font-size: 17px;
         }
 
-        .console-body {
+        .featured-body {
           padding: 18px;
         }
 
-        .metric-grid,
         .article-grid,
         .topic-grid {
           grid-template-columns: 1fr;
@@ -556,9 +531,9 @@
   <body>
     <header class="topbar">
       <div class="shell nav">
-        <a class="brand" href="#top" aria-label="Tyouoyu 首页">
+        <a class="brand" href="#top" aria-label="Tyouyu 首页">
           <span class="brand-mark">T</span>
-          <span>Tyouoyu</span>
+          <span>Tyouyu</span>
         </a>
         <nav class="nav-links" aria-label="页面导航">
           <a href="#articles">最新文章</a>
@@ -582,38 +557,29 @@
           </div>
         </div>
 
-        <aside class="console" aria-label="站点状态">
-          <div class="console-head">
-            <div class="dots" aria-hidden="true">
-              <span class="dot"></span>
-              <span class="dot"></span>
-              <span class="dot"></span>
-            </div>
-            <span>knowledge-space.status</span>
+        <aside class="featured-list" aria-label="精选文章">
+          <div class="featured-head">
+            <span>精选文章</span>
+            <span>Latest</span>
           </div>
-          <div class="console-body">
-            <div class="scan-card">
-              <span class="label">CURRENT SIGNAL</span>
-              <h3>持续写作中</h3>
-              <p>把输入变成输出，把感受变成结构，把一周里的碎片变成可复用的思想材料。</p>
-              <div class="bar"><span style="width: 78%"></span></div>
-            </div>
-            <div class="scan-card">
-              <span class="label">UPDATE RHYTHM</span>
-              <div class="metric-grid">
-                <div class="metric">
-                  <strong>2-3</strong>
-                  <span>篇 / 周</span>
-                </div>
-                <div class="metric">
-                  <strong>HTML</strong>
-                  <span>独立文章页</span>
-                </div>
-                <div class="metric">
-                  <strong>∞</strong>
-                  <span>长期沉淀</span>
-                </div>
-              </div>
+          <div class="featured-body">
+            <a class="hero-post" href="posts/first-post.html">
+              <span class="label">FEATURED / 2026-06-19</span>
+              <h3>第一篇文章标题</h3>
+              <p>这里放一篇最想推荐给读者的文章，可以是最新发布，也可以是最能代表这个空间气质的一篇。</p>
+            </a>
+
+            <div class="mini-posts">
+              <a class="mini-post" href="posts/second-post.html">
+                <span class="label">TECH / 2026-06-19</span>
+                <h3>一次技术学习记录</h3>
+                <p>关于工具、代码、系统设计或 AI 实践的拆解与复盘。</p>
+              </a>
+              <a class="mini-post" href="posts/third-post.html">
+                <span class="label">NOTE / 2026-06-19</span>
+                <h3>最近的一点感悟</h3>
+                <p>把生活里的观察、变化和问题写成更清晰的文字。</p>
+              </a>
             </div>
           </div>
         </aside>
@@ -623,7 +589,7 @@
         <div class="shell">
           <div class="section-title">
             <h2>最新文章</h2>
-            <p>以后新文章做好 HTML 后，把链接加到这里即可。建议文章放在 `posts/` 文件夹中，路径更清晰。</p>
+            <p>一些近期写下的文章与片段，关于技术、学习、生活观察，以及那些还在持续变清楚的问题。</p>
           </div>
 
           <div class="article-grid">
@@ -632,8 +598,8 @@
                 <span class="tag">思考</span>
                 <span>2026-06-19</span>
               </div>
-              <h3>国资企业Token出海战略分析</h3>
-              <p>人工智能爆发，中国的机遇在哪里？</p>
+              <h3>第一篇文章标题</h3>
+              <p>这里写一两句话摘要，说明这篇文章讨论的问题、灵感来源或你希望读者带走的观点。</p>
               <span class="read-more">阅读全文 →</span>
             </a>
 
@@ -691,16 +657,17 @@
       <section id="about">
         <div class="shell note">
           <div class="note-panel">
-            <h2>如何更新</h2>
+            <h2>关于这个空间</h2>
             <p>
-              首页保持稳定，文章独立成页。每次新增文章时，把文章 HTML 上传到仓库，再在“最新文章”区域添加一张文章卡片即可。
+              这里不是一个追热点的地方，而是一个慢慢积累的知识空间。技术笔记、阅读体会、生活感悟和阶段性复盘都会被放在这里，
+              让零散经验逐渐形成更清晰的个人知识地图。
             </p>
           </div>
           <ul class="steps">
-            <li>1. 新建文章文件，例如 `posts/my-new-note.html`</li>
-            <li>2. 上传到 `tyouoyu.github.io` 仓库</li>
-            <li>3. 在首页复制一张文章卡片，修改标题、日期、摘要和链接</li>
-            <li>4. 提交后访问 `https://tyouoyu.github.io/` 查看更新</li>
+            <li>保持真实：记录当下真正关心的问题，而不是制造看起来完整的答案。</li>
+            <li>保持清晰：每篇文章尽量只解决一个核心问题，留下可复用的思考路径。</li>
+            <li>保持连续：每周更新几篇短文，让表达成为长期系统的一部分。</li>
+            <li>保持开放：允许观点迭代，也允许旧文章在新的理解里被重新连接。</li>
           </ul>
         </div>
       </section>
@@ -708,7 +675,7 @@
 
     <footer>
       <div class="shell footer-row">
-        <span>© 2026 Tyouoyu. Built with GitHub Pages.</span>
+        <span>© 2026 Tyouyu. Built with GitHub Pages.</span>
         <span>Articles, notes, reflections.</span>
       </div>
     </footer>
